@@ -1,0 +1,8 @@
+.logout{
+    padding: 5px;
+    background-color: var(--color-primary);
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    border-radius: var(--size-border-radius);
+}
