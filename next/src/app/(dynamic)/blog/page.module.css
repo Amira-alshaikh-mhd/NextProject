@@ -1,28 +1,39 @@
-.post{
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    margin-bottom: 50px;
-    border: 1px solid #555;
-
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 32%);
+  gap: 15px;
 }
 
-.post:nth-child(odd){
-    flex-direction: row-reverse;
+.post {
+  flex-grow: 1;
+  border: 1px solid #444;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+.post:hover{
+    background-color: black;
+    border: 1px solid #fff;
 }
 
-.image{
-    object-fit: cover;
-    border-radius: 15px;
-
+.ImageContainer{
+    position: relative;
+    height: 200px;
 }
 
-.title{
-    font-weight: 700;
-
+.image {
+  object-fit: cover;
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
 }
 
-.text{
-font-size: 18px;
-color: #999;
+.title {
+  font-weight: 400;
+  margin: 2px;
+}
+
+.text {
+  font-size: 18px;
+  color: #999;
+  margin: 2px;
 }

@@ -3,102 +3,56 @@ import Link from "next/link";
 import styles from "./page.module.css"
 
 
-export default function Blog() {
+
+async function getData() {
+  const res = await fetch('https://dummyjson.com/products')
+ 
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
+}
+
+
+export default async function Blog() {
+
+  const data = await getData()
+  const products = data.products
+
+  console.log(data)
+
+
   return (
     <div className={styles.container}>
-<Link href="/blog/id" className={styles.post}>
-<div className={styles.ImageContainer}>
-<Image
-className={styles.image}
-src={"https://images.pexels.com/photos/18113138/pexels-photo-18113138/free-photo-of-horses-grazing-on-meadow.jpeg"}
-width={350}
-height={250}
-alt="post image"
 
-/>
-</div>
-<div className={styles.content}>
-<h1 className={styles.title}>Post Title</h1>
-<p className={styles.text}> Post Text</p>
+      {products.map(products => (
+        <Link href={`/blog/${products.id}`} className={styles.post} key={products.id}>
+        <div className={styles.ImageContainer}>
+        <Image
+        className={styles.image}
+        src={products.thumbnail}
+        width={350}
+        height={250}
+        alt="post image"
+        
+        />
+        </div>
+        <div className={styles.content}>
+        <h1 className={styles.title}>{products.title}</h1>
+        <p className={styles.text}>{products.description}</p>
+        
+        </div>
+        
+        
+        
+        
+        </Link >
 
-</div>
-
-
-
-
-</Link >
-
-
-<Link href="/blog/id" className={styles.post}>
-<div className={styles.ImageContainer}>
-<Image
-className={styles.image}
-src={"https://images.pexels.com/photos/18113138/pexels-photo-18113138/free-photo-of-horses-grazing-on-meadow.jpeg"}
-width={350}
-height={250}
-alt="post image"
-
-/>
-</div>
-<div className={styles.content}>
-<h1 className={styles.title}>Post Title</h1>
-<p className={styles.text}> Post Text</p>
-
-</div>
+      ))}
 
 
 
-
-</Link >
-
-
-
-<Link href="/blog/id" className={styles.post}>
-<div className={styles.ImageContainer}>
-<Image
-className={styles.image}
-src={"https://images.pexels.com/photos/18113138/pexels-photo-18113138/free-photo-of-horses-grazing-on-meadow.jpeg"}
-width={350}
-height={250}
-alt="post image"
-
-/>
-</div>
-<div className={styles.content}>
-<h1 className={styles.title}>Post Title</h1>
-<p className={styles.text}> Post Text</p>
-
-</div>
-
-
-
-
-</Link >
-
-
-
-
-<Link href="/blog/id" className={styles.post}>
-<div className={styles.ImageContainer}>
-<Image
-className={styles.image}
-src={"https://images.pexels.com/photos/18113138/pexels-photo-18113138/free-photo-of-horses-grazing-on-meadow.jpeg"}
-width={350}
-height={250}
-alt="post image"
-
-/>
-</div>
-<div className={styles.content}>
-<h1 className={styles.title}>Post Title</h1>
-<p className={styles.text}> Post Text</p>
-
-</div>
-
-
-
-
-</Link >
 
     </div>
   )
